@@ -11,13 +11,16 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.david.thumbsplit.model.UserModel;
 import com.example.david.thumbsplit.model.VideoListListener;
+import com.example.david.thumbsplit.model.VideosListListener;
 import com.example.david.thumbsplit.model.VideosListModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static java.security.AccessController.getContext;
@@ -30,18 +33,22 @@ public class GetVideoRequest {
 
     String token;
     String videos_url="http://52.14.245.160:4096/v1/get-videos";
-    private VideoListListener videoListListener;
+    private VideosListListener videosListListener;
     String videoTitle,thumbnail,thumbnail_image,videoUrl,shareUrl;
     int videoLength,views,likeStatus,likeCount,dislikeCount,id;
     long createDate;
     UserModel videoOwner;
     VideosListModel videosListModel;
+    private List<VideosListModel> mList=new ArrayList<>();
+   int page_size=3;
+    private JSONObject last_object,next_object;
 
     private HashMap<String, String> headers = new HashMap<>();
 
-    public GetVideoRequest(String jwt,VideoListListener videoListListener) {
+    public GetVideoRequest(String jwt,JSONObject last_obj,VideosListListener videosListListener) {
         this.token = jwt;
-        this.videoListListener=videoListListener;
+        this.videosListListener=videosListListener;
+        this.last_object=last_obj;
     }
 
 
@@ -71,12 +78,16 @@ public class GetVideoRequest {
 
                     //setting the model
                     videosListModel=new VideosListModel(videoTitle,thumbnail,thumbnail_image,videoUrl,shareUrl,videoLength,views,likeStatus,likeCount,dislikeCount,videoOwner,createDate,id);
-
+                    mList.add(videosListModel);
                     //saving model
-                    videoListListener.recivedVideoItem(videosListModel);
+
+                        next_object = item;
+//
+
+
                 }
 
-
+                videosListListener.recivedVideosList(mList,next_object);
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -101,6 +112,18 @@ public class GetVideoRequest {
             }
             return headers;
         }
+
+        @Override
+        protected Map<String, String> getParams() throws AuthFailureError {
+            Map <String,String> params=new HashMap<>();
+            params.put("page_size", String.valueOf(page_size));
+            if(last_object!=null) {
+                params.put("last_element", last_object.toString());
+            }
+
+            return params;
+        }
+
 
 
 

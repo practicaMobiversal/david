@@ -11,6 +11,7 @@ import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.StringRequest;
 import com.example.david.thumbsplit.model.UserModel;
 import com.example.david.thumbsplit.model.VideoListListener;
+import com.example.david.thumbsplit.model.VideosListListener;
 import com.example.david.thumbsplit.model.VideosListModel;
 
 
@@ -18,6 +19,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +39,7 @@ public class GetVideoDetail {
     long createDate;
     UserModel videoOwner;
     VideosListModel videosListModel;
+
 
     String description;
     List<UserModel> taggedUsers;

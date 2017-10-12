@@ -43,7 +43,11 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
     private int videoId;
     private String token;
 
-    public VideoAdapter(Context context,List<VideosListModel> modelList){
+    public List<VideosListModel> getModelList() {
+        return modelList;
+    }
+
+    public VideoAdapter(Context context, List<VideosListModel> modelList){
         this.mContext=context;
         this.modelList=modelList;
     }
@@ -54,13 +58,9 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
         View view=LayoutInflater.from(parent.getContext()).inflate(R.layout.single_video_layout,null);
         ViewHolder viewHolder=new ViewHolder(view);
 
-
-//
-
         return viewHolder;
-
-
     }
+
 
     @Override
     public void onBindViewHolder(VideoAdapter.ViewHolder holder, int position) {
