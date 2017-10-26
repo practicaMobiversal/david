@@ -2,32 +2,17 @@ package com.example.david.thumbsplit;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.preference.DialogPreference;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import static android.R.attr.password;
-import static android.R.id.message;
+import com.example.david.thumbsplit.model.MyListener;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -74,7 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
                 pass=editPass.getText().toString();
                 confirmPass=editConfirmPass.getText().toString();
 
-                if(name.equals("")||email.equals("")||username.equals("")||pass.equals("")||confirmPass.equals("")){
+                if(name.equals("") || email.equals("")||username.equals("")||pass.equals("")||confirmPass.equals("")){
                 builder.setTitle("something went wrong...");
                     builder.setMessage("fill all the fields...");
                 displayAlert(300);
@@ -91,12 +76,13 @@ public class RegisterActivity extends AppCompatActivity {
 
                     }
                     else{
-                     RListener listener=new RListener(name, username, pass, email, builder, new MyListener() {
-                         @Override
-                         public void recivedCodeFromServer(int code) {
-                             displayAlert(code);
-                         }
-                     });
+                        RListener listener=new RListener(name, username, pass, email, builder, new MyListener() {
+                             @Override
+                            public void recivedCodeFromServer(int code) {
+                                 displayAlert(code);
+                            }
+                        });
+
                         StringRequest arg = listener.stringRequest;
                         MySingleton.getInstance(RegisterActivity.this).addToRequestque(arg);
 

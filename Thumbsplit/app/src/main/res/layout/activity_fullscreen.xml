@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/black"
 
     tools:context="com.example.david.thumbsplit.FullscreenActivity">
@@ -12,7 +13,18 @@
     <com.google.android.exoplayer2.ui.SimpleExoPlayerView
         android:id="@+id/fullscreed_exoplayer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/btn_fullscreen_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="25dp"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/btn_back" />
+
+    </com.google.android.exoplayer2.ui.SimpleExoPlayerView>
 
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->

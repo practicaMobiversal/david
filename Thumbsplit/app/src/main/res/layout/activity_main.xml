@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.david.thumbsplit.MainActivity">
+    tools:context="com.example.david.thumbsplit.MainActivity"
+    >
 
 
     <ImageView
@@ -99,9 +100,16 @@
             android:orientation="horizontal"
             android:layout_gravity="center">
             <ImageView
+                android:id="@+id/login_facebook"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:src="@drawable/btn_facebook"/>
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/login_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone" />
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"

@@ -24,7 +24,10 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:design:26.+'
+
+
+    compile 'com.facebook.android:facebook-share:[4,5)'
+    compile 'com.facebook.android:facebook-login:[4,5)'
     compile 'com.android.support:design:26.+'
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support:support-v4:26.+'
@@ -37,5 +40,19 @@ dependencies {
     compile 'com.google.android.exoplayer:exoplayer:r2.5.3'
     compile 'com.google.android.exoplayer:exoplayer-ui:r2.5.3'
     compile 'com.github.pwittchen:infinitescroll:0.0.1'
+    compile 'com.karumi:headerrecyclerview:1.1.0'
+    compile 'com.google.code.gson:gson:2.8.2'
     testCompile 'junit:junit:4.12'
+}
+
+
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion '25.3.0'
+            }
+        }
+    }
 }

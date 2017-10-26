@@ -40,7 +40,7 @@ public class GetVideoRequest {
     UserModel videoOwner;
     VideosListModel videosListModel;
     private List<VideosListModel> mList=new ArrayList<>();
-   int page_size=3;
+    int page_size=3;
     private JSONObject last_object,next_object;
 
     private HashMap<String, String> headers = new HashMap<>();
@@ -71,7 +71,7 @@ public class GetVideoRequest {
                     dislikeCount=item.getInt("dislike_count");
                     createDate=item.getLong("created_at");
                     id=item.getInt("id");
-                   JSONObject user=item.getJSONObject("user");
+                    JSONObject user = item.getJSONObject("user");
                    String username=user.getString("username");
                     String profileImg=user.getString("profile_image");
                     videoOwner=new UserModel(token,username,profileImg);
@@ -82,9 +82,6 @@ public class GetVideoRequest {
                     //saving model
 
                         next_object = item;
-//
-
-
                 }
 
                 videosListListener.recivedVideosList(mList,next_object);
@@ -118,7 +115,7 @@ public class GetVideoRequest {
             Map <String,String> params=new HashMap<>();
             params.put("page_size", String.valueOf(page_size));
             if(last_object!=null) {
-                params.put("last_element", last_object.toString());
+                params.put("last_element", String.valueOf(last_object));
             }
 
             return params;

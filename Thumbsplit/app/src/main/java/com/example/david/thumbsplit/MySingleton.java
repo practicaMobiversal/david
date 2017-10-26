@@ -14,6 +14,7 @@ public class MySingleton {
     private static MySingleton ourInstance;
     private RequestQueue requestQueue;
     private Context mCtx;
+   public int page_size=3;
 
 
 

@@ -97,7 +97,7 @@ final VideosListModel modelVideo=modelList.get(position);
                 Bundle bundle=new Bundle();
                 bundle.putInt("id",modelVideo.getId());
                 bundle.putString("token",token);
-                intent.putExtras(bundle);
+                intent.putExtra("video_auth",bundle);
                 mContext.startActivity(intent);
             }
         });

@@ -7,6 +7,7 @@
     <color name="Pink1">#f0fd017f</color>
     <color name="black_overlay">#66000000</color>
     <color name="statusBar">#37000000</color>
+    <color name="gray">#959495</color>
 
 
 </resources>

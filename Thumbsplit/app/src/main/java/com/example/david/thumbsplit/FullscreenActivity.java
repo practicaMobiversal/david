@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageButton;
 
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
@@ -27,10 +28,11 @@ public class FullscreenActivity extends AppCompatActivity {
 
     SimpleExoPlayerView fullScreenView;
     private int currentWindow;
-    private long playbackPosition;
     boolean playWhenReady = false;
+    ImageButton btnBack;
     String video_url;
     long playback;
+    ImageButton smallScreen;
     SimpleExoPlayer player;
 
 
@@ -44,6 +46,29 @@ public class FullscreenActivity extends AppCompatActivity {
         Bundle bundle=intent.getExtras();
         video_url=bundle.getString("video_url");
         playback=bundle.getLong("playback");
+        btnBack=(ImageButton)findViewById(R.id.btn_fullscreen_back);
+        smallScreen=(ImageButton)findViewById(R.id.btn_fullscreen_player) ;
+        smallScreen.setBackgroundResource(R.drawable.btn_exit_fullscreen);
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent fullscreen=new Intent(FullscreenActivity.this,VideoDetailActivity.class);
+                fullscreen.putExtra("playback",player.getContentPosition());
+                setResult(RESULT_OK,fullscreen);
+                finish();
+            }
+        });
+
+        smallScreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent fullscreen=new Intent(FullscreenActivity.this,VideoDetailActivity.class);
+                fullscreen.putExtra("playback",player.getContentPosition());
+               setResult(RESULT_OK,fullscreen);
+                finish();
+            }
+        });
 
     }
 
@@ -71,7 +96,7 @@ public class FullscreenActivity extends AppCompatActivity {
     }
     private void releasePlayer() {
         if (player != null) {
-            playbackPosition = player.getCurrentPosition();
+            playback = player.getCurrentPosition();
             currentWindow = player.getCurrentWindowIndex();
             playWhenReady = player.getPlayWhenReady();
             player.release();

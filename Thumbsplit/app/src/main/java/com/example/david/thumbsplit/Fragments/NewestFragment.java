@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.android.volley.toolbox.StringRequest;
 import com.example.david.thumbsplit.GetVideoRequest;
@@ -19,6 +21,7 @@ import com.example.david.thumbsplit.MySingleton;
 import com.example.david.thumbsplit.PaginationRecyclerViewScrollListener;
 import com.example.david.thumbsplit.R;
 import com.example.david.thumbsplit.VideoAdapter;
+import com.example.david.thumbsplit.model.BottomToolbarModel;
 import com.example.david.thumbsplit.model.VideoListListener;
 import com.example.david.thumbsplit.model.VideosListListener;
 import com.example.david.thumbsplit.model.VideosListModel;
@@ -47,6 +50,7 @@ public class NewestFragment extends Fragment {
     int page_size=3;
     int i;
 
+BottomToolbarModel bottomBar;
 
 
     public NewestFragment() {
@@ -55,10 +59,14 @@ public class NewestFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
+        bottomBar=new BottomToolbarModel(getContext());
         mMainView = inflater.inflate(R.layout.fragment_newest, container, false);
         mNewestrecycler=(RecyclerView)mMainView.findViewById(R.id.newest_recycler);
         mNewestrecycler.hasFixedSize();
         mNewestrecycler.setLayoutManager(layoutManager=new LinearLayoutManager(getContext()));
+        bottomBar=(BottomToolbarModel)mMainView.findViewById(R.id.newest_bottom_bar);
+
+
 
 
         videoAdapter=new VideoAdapter(getContext(),mList);
@@ -69,7 +77,7 @@ public class NewestFragment extends Fragment {
 
                     mList.addAll(videosListModel);
                     videoAdapter.notifyDataSetChanged();
-                last_element=last_obj;
+                    last_element=last_obj;
             }
         });
 
@@ -110,13 +118,11 @@ public class NewestFragment extends Fragment {
             @Override
             public void recivedVideosList(List<VideosListModel> vList,JSONObject last_obj) {
 
-                if(vList.size()==page_size) {
-                    mList.addAll(vList);
-                    last_element = last_obj;
-                    videoAdapter.notifyDataSetChanged();
-                    isLoading = false;
-                }
-                else isLastPage=true;
+                isLastPage = vList.size() < page_size;
+                mList.addAll(vList);
+                last_element = last_obj;
+                videoAdapter.notifyDataSetChanged();
+                isLoading = false;
 
 
             }

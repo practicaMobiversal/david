@@ -43,12 +43,14 @@
         android:layout_alignStart="@+id/text_fullname" />
 
     <Button
-        android:layout_width="5dp"
+        android:layout_width="4dp"
         android:layout_height="20dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/btn_more_menu"
         android:layout_marginLeft="300dp"
         android:id="@+id/button9"
-        android:layout_alignTop="@+id/text_fullname"
+        android:layout_alignBaseline="@+id/text_fullname"
+        android:layout_alignBottom="@+id/text_fullname"
         android:layout_alignEnd="@+id/btn_video_length" />
 
     <ImageView
@@ -86,7 +88,6 @@
         android:layout_marginLeft="10dp"
         android:paddingRight="15dp"
         android:layout_gravity="center"
-
         android:text="53.8"
         android:textAllCaps="false"
         android:textColor="@android:color/white"

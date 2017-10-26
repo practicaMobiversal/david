@@ -1,6 +1,7 @@
 package com.example.david.thumbsplit;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
@@ -28,7 +29,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         jwt = bundle.getString("jwt");

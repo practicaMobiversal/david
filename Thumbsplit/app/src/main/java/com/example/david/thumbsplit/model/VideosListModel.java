@@ -18,6 +18,7 @@ public class VideosListModel {
     int dislikeCount;
     String description;
     List<UserModel> taggedUsers;
+    List<CommentsModelList> commentsModelLists;
     public List<UserModel> getTaggedUsers() {
         return taggedUsers;
     }
@@ -161,9 +162,14 @@ public class VideosListModel {
         this.createDate=createDate;
         this.id=id;
     }
+
+    public List<CommentsModelList> getCommentsModelLists() {
+        return commentsModelLists;
+    }
+
     public VideosListModel(String videoTitle, String thumbnail, String thumbnail_image, String videoUrl,
                            String shareUrl, int videoLength, int views, int likeStatus, int likeCount, int dislikeCount,
-                           UserModel videoOwner,long createDate,int id,String description, List<UserModel> taggedUsers) {
+                           UserModel videoOwner, long createDate, int id, String description, List<UserModel> taggedUsers, List<CommentsModelList> commentsModelLists) {
         this.videoTitle = videoTitle;
         this.thumbnail = thumbnail;
         this.thumbnail_image = thumbnail_image;
@@ -179,5 +185,6 @@ public class VideosListModel {
         this.id=id;
         this.description=description;
         this.taggedUsers=taggedUsers;
+        this.commentsModelLists=commentsModelLists;
     }
 }

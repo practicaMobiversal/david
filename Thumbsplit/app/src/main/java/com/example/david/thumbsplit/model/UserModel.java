@@ -5,6 +5,7 @@ package com.example.david.thumbsplit.model;
  */
 
 public class UserModel {
+    public UserModel(){}
 
     public UserModel(String token, String username, String profileImg) {
         this.token = token;
@@ -13,7 +14,6 @@ public class UserModel {
     }
 
     private String token;
-
     public String getToken() {
         return token;
     }

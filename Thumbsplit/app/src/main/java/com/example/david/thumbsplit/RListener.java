@@ -1,6 +1,5 @@
 package com.example.david.thumbsplit;
 
-import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 
 import com.android.volley.AuthFailureError;
@@ -8,6 +7,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.david.thumbsplit.model.MyListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
